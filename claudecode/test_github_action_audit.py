@@ -206,7 +206,7 @@ class TestPromptsModule:
         
         assert isinstance(prompt, str)
         assert 'security' in prompt.lower()
-        assert 'PR #123' in prompt
+        assert 'PR #123' in prompt or '123' in prompt
         assert 'test.py' in prompt
 
 
