@@ -70,13 +70,13 @@ class GitHubActionClient:
         """
         # Get PR metadata
         pr_url = f"https://api.github.com/repos/{repo_name}/pulls/{pr_number}"
-        response = requests.get(pr_url, headers=self.headers)
+        response = requests.get(pr_url, headers=self.headers, timeout=30)
         response.raise_for_status()
         pr_data = response.json()
-        
+
         # Get PR files with pagination support
         files_url = f"https://api.github.com/repos/{repo_name}/pulls/{pr_number}/files?per_page=100"
-        response = requests.get(files_url, headers=self.headers)
+        response = requests.get(files_url, headers=self.headers, timeout=30)
         response.raise_for_status()
         files_data = response.json()
         
@@ -130,9 +130,9 @@ class GitHubActionClient:
         headers = dict(self.headers)
         headers['Accept'] = 'application/vnd.github.diff'
         
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
-        
+
         return self._filter_generated_files(response.text)
     
     def _is_excluded(self, filepath: str) -> bool:

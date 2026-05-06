@@ -94,11 +94,13 @@ class TestGitHubActionClient:
         assert mock_get.call_count == 2
         mock_get.assert_any_call(
             'https://api.github.com/repos/owner/repo/pulls/123',
-            headers=client.headers
+            headers=client.headers,
+            timeout=30
         )
         mock_get.assert_any_call(
             'https://api.github.com/repos/owner/repo/pulls/123/files?per_page=100',
-            headers=client.headers
+            headers=client.headers,
+            timeout=30
         )
         
         # Verify result structure

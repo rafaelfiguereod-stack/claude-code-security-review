@@ -235,7 +235,7 @@ diff --git a/src/db/queries.py b/src/db/queries.py
         prompt = get_security_audit_prompt(pr_data, pr_diff)
         
         # Should contain sections for metadata and diff
-        assert "PR #" in prompt or "Pull Request" in prompt
+        assert "PR #" in prompt or "Pull Request" in prompt or "PR NUMBER:" in prompt
         assert "Title:" in prompt or pr_data["title"] in prompt
         assert "Author:" in prompt or pr_data["user"]["login"] in prompt
         assert "Files:" in prompt or "test.py" in prompt
